@@ -1,0 +1,42 @@
+@import '../../../custom-theme.scss';
+
+mat-expansion-panel {
+  margin-bottom: 10px;
+}
+
+body {
+  padding: 20px;
+  width: 40vw;
+}
+
+.mat-mdc-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.container-header {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container-aux {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+.container-file {
+  width: 75%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+}

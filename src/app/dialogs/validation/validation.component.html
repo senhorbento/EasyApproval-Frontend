@@ -1,0 +1,16 @@
+<body>
+  <div class="container-header">
+    <h1>Approval</h1>
+    <button mat-icon-button (click)="Close()"><mat-icon>close</mat-icon></button>
+  </div>
+  <span style="display: flex; flex-direction: column;">
+    <label id="example-radio-group-label"></label>
+    <mat-radio-group [(ngModel)]="obj.approved" aria-label="Select an option">
+      <mat-radio-button [value]="true">Approved</mat-radio-button>
+      <mat-radio-button [value]="false">Disapproved</mat-radio-button>
+    </mat-radio-group>
+  </span>
+  <div mat-dialog-actions>
+    <button mat-flat-button color="accent" (click)="UpdateApproval()"><mat-icon>send</mat-icon>Send</button>
+  </div>
+</body>

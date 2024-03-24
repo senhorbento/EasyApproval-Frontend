@@ -1,0 +1,19 @@
+@import '../../../custom-theme.scss';
+
+body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-mdc-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-header {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}

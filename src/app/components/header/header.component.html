@@ -1,0 +1,19 @@
+<div class="toolbar" role="banner">
+  <button mat-button>Easy Approval</button>
+  <button mat-button (click)="RequestsToMe()">Approvals</button>
+  <button mat-button (click)="MyDocuments()">My Documents</button>
+  <button mat-button [matMenuTriggerFor]="itemsMenu" *ngIf="CheckAdmin()">Admin Area</button>
+  <mat-menu #itemsMenu="matMenu">
+    <button mat-menu-item (click)="Users()" *ngIf="CheckAdmin()">Users</button>
+  </mat-menu>
+  <div class="spacer"></div>
+  <button mat-button [matMenuTriggerFor]="itemsUser" id="user">
+    <mat-icon>person</mat-icon>{{user}}
+  </button>
+  <mat-menu #itemsUser="matMenu">
+    <div mat-menu-item>Acess Level: {{acessLevel}}</div>
+    <button type="submit" mat-menu-item (click)="Logout()">
+      <mat-icon>logout</mat-icon>Log out
+    </button>
+  </mat-menu>
+</div>

@@ -1,0 +1,16 @@
+<div class="container">
+  <form class="parent" #loginForm="ngForm" (ngSubmit)="Login()">
+    <h1>Easy Approval</h1>
+    <mat-form-field class="full-width">
+      <mat-label>User</mat-label>
+      <input type="text" name="username" [(ngModel)]="user.user" matInput placeholder="Ex. user" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Password</mat-label>
+      <input name="password" [(ngModel)]="user.password" type="password" matInput placeholder="Password" />
+    </mat-form-field>
+    <button class="full-width" type="submit" mat-raised-button color="primary">
+      Log In
+    </button>
+  </form>
+</div>

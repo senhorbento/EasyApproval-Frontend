@@ -1,0 +1,55 @@
+<body>
+  <div class="container-header">
+    <h1>{{title}}</h1>
+    <button mat-icon-button (click)="Close()" style="width: 50px; height: 50px;"><mat-icon>close</mat-icon></button>
+  </div>
+  <h2>Document Information</h2>
+  <div class="container-aux">
+    <mat-form-field style="width: 47%;">
+      <mat-label [ngClass]="{'warn': errorDocument}">Document Name *</mat-label>
+      <input [(ngModel)]="item.name" matInput placeholder="Ex.: NFE - Keyboard 01/24" #input maxlength="100">
+    </mat-form-field>
+    <div style="display: flex; flex-direction: column; width: 47%;">
+      <input type="file" #fileInput style="display: none" (change)="UploadFile($event)" accept="application/pdf">
+      <button mat-flat-button color="primary" (click)="fileInput.click()">
+        <mat-icon>upload</mat-icon> Upload Document (.pdf) *
+      </button>
+      <mat-hint [ngClass]="{'warn': errorPdf}">{{fileName}}</mat-hint>
+    </div>
+  </div>
+  <h2>Approvers</h2>
+  <div class="container-aux">
+    <mat-form-field style="width: 100%;">
+      <mat-label [ngClass]="{'warn': errorApprover}">Users</mat-label>
+      <input type="text" [formControl]="approverControl" [matAutocomplete]="autoApprover" [(ngModel)]="approver" matInput
+        placeholder="Ex.: admin" #input maxlength="200" (keyup.enter)="AddApprover()">
+      <button matSuffix mat-icon-button aria-label="Add Aprover" (click)="AddApprover()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <mat-autocomplete #autoApprover="matAutocomplete" [displayWith]="displayApprover">
+        <mat-option *ngFor="let option of (filteredApproverOptions | async)" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <table mat-table [dataSource]="listApprover">
+    <ng-container matColumnDef="Approver">
+      <th mat-header-cell *matHeaderCellDef>Approvers</th>
+      <td mat-cell *matCellDef="let element">{{element}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Delete">
+      <th mat-header-cell *matHeaderCellDef style="text-align: right;">Remove</th>
+      <td mat-cell *matCellDef="let element" style="text-align: right;">
+        <button mat-icon-button class="warn" aria-label="Remove Approver" (click)="RemoveApprover(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div mat-dialog-actions>
+    <button mat-flat-button color="accent" (click)="Insert()"><mat-icon>send</mat-icon>Send</button>
+  </div>
+</body>

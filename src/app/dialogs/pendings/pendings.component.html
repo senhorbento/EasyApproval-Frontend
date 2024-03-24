@@ -1,0 +1,31 @@
+<body>
+  <div class="container-header">
+    <h1>Pendings</h1>
+    <button mat-icon-button (click)="Close()" style="width: 50px; height: 50px;"><mat-icon>close</mat-icon></button>
+  </div>
+  <table mat-table [dataSource]="pendingList" matSort>
+    <ng-container matColumnDef="approverId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Approver</th>
+      <td mat-cell *matCellDef="let element">{{element.approverId}}</td>
+    </ng-container>
+    <ng-container matColumnDef="approvedDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Approved Date</th>
+      <td mat-cell *matCellDef="let element">{{element.approvedDate}}</td>
+    </ng-container>
+    <ng-container matColumnDef="approval">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Approved</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon *ngIf="element.approved == 'True'">done</mat-icon>
+        <mat-icon *ngIf="element.approved == 'False'">close</mat-icon>
+    </ng-container>
+    <ng-container matColumnDef="observation">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Observation</th>
+      <td mat-cell *matCellDef="let element">{{element.observation}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter</td>
+    </tr>
+  </table>
+</body>

@@ -6,17 +6,17 @@
   <table mat-table [dataSource]="pendingList" matSort>
     <ng-container matColumnDef="approverId">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Approver</th>
-      <td mat-cell *matCellDef="let element">{{element.approverId}}</td>
+      <td mat-cell *matCellDef="let element">{{element.approverName}}</td>
     </ng-container>
     <ng-container matColumnDef="approvedDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Approved Date</th>
-      <td mat-cell *matCellDef="let element">{{element.approvedDate}}</td>
+      <td mat-cell *matCellDef="let element">{{element.approvalDate}}</td>
     </ng-container>
     <ng-container matColumnDef="approval">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Approved</th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon *ngIf="element.approved == 'True'">done</mat-icon>
-        <mat-icon *ngIf="element.approved == 'False'">close</mat-icon>
+        <mat-icon *ngIf="element.approved == 1">done</mat-icon>
+        <mat-icon *ngIf="element.approved == 0">close</mat-icon>
     </ng-container>
     <ng-container matColumnDef="observation">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Observation</th>

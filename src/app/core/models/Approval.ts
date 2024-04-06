@@ -5,7 +5,7 @@ export class ApprovalUpdate {
 }
 
 export class Approval {
-  documentId: number = -1;
-  approverId: number = -1;
+  approvalDate: string = "";
+  approverName: string = "";
   approved: boolean = false;
 }

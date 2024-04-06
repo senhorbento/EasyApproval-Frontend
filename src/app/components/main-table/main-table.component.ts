@@ -99,7 +99,7 @@ export class MainTableComponent implements OnInit {
     this.spinner.show();
     this.documentService.GetPdf(id).subscribe({
       next: (data) => {
-        this.pdfService.OpenPdf(data.pdfFile);
+        this.pdfService.OpenPdf(data);
         this.spinner.hide();
       },
       error: error => {
@@ -114,7 +114,7 @@ export class MainTableComponent implements OnInit {
     this.spinner.show();
     this.documentService.GetPdf(id).subscribe({
       next: (data) => {
-        this.pdfService.DownloadPdf(data.pdfFile, number);
+        this.pdfService.DownloadPdf(data, number);
         this.spinner.hide();
       },
       error: error => {

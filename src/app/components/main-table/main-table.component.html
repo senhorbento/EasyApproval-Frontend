@@ -30,7 +30,7 @@
   <ng-container matColumnDef="documentStatus">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
     <td mat-cell *matCellDef="let element">
-      <a (click)="CheckStatus(element.status, element.guid)">
+      <a (click)="CheckStatus(element.status, element.id)">
         <b [ngClass]="GetDocumentStatusClass(element.status)">{{element.status}}</b>
       </a>
     </td>

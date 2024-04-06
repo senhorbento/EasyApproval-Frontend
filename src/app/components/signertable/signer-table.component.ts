@@ -90,9 +90,9 @@ export class SignerTableComponent {
     });
   }
 
-  View = (guid: string) => {
+  View = (id: number) => {
     this.spinner.show();
-    this.documentService.GetPdf(guid).subscribe({
+    this.documentService.GetPdf(id).subscribe({
       next: (data) => {
         this.pdfService.OpenPdf(data.pdfFile);
         this.spinner.hide();

@@ -17,7 +17,7 @@ export class DocumentService {
     catchError(error => { throw HTTPService.HandleError(error); })
   );
 
-  GetPdf = (guid: string) => this.http.get<any>(`${Constants.DOCUMENT}/ReadPdf/${guid}`).pipe(
+  GetPdf = (id: number) => this.http.get<any>(`${Constants.DOCUMENT}/ReadPdf/${id}`).pipe(
     map((response: any) => response),
     catchError(error => { throw HTTPService.HandleError(error); })
   );

@@ -95,9 +95,9 @@ export class MainTableComponent implements OnInit {
     });
   }
 
-  View = (guid: string) => {
+  View = (id: number) => {
     this.spinner.show();
-    this.documentService.GetPdf(guid).subscribe({
+    this.documentService.GetPdf(id).subscribe({
       next: (data) => {
         this.pdfService.OpenPdf(data.pdfFile);
         this.spinner.hide();
@@ -110,9 +110,9 @@ export class MainTableComponent implements OnInit {
     });
   }
 
-  Download = (guid: string, number: string) => {
+  Download = (id: number, number: string) => {
     this.spinner.show();
-    this.documentService.GetPdf(guid).subscribe({
+    this.documentService.GetPdf(id).subscribe({
       next: (data) => {
         this.pdfService.DownloadPdf(data.pdfFile, number);
         this.spinner.hide();

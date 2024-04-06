@@ -3,13 +3,13 @@ export class ApprovalInsert {
 }
 
 export class ApprovalUpdate {
-  documentId: string = "";
-  approverId: string = "";
+  documentId: number = -1;
+  approverId: number = -1;
   approved: boolean = false;
 }
 
 export class Approval {
-  documentId: string = "";
-  approverId: string = "";
+  documentId: number = -1;
+  approverId: number = -1;
   approved: boolean = false;
 }

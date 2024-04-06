@@ -22,6 +22,7 @@ export class UsersDialog {
     private spinner: SpinnerService,
     private snackBar: SnackBar) {
     this.title = data.title;
+    console.log(data.object)
     if (this.title != "New") this.obj = data.object;
   }
 

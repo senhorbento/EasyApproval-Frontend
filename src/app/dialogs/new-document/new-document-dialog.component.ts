@@ -20,7 +20,6 @@ export class NewDocumentDialogComponent implements OnInit {
 
   copyControl = new FormControl<string>('');
   approverControl = new FormControl<string>('');
-  filteredCopyOptions: Observable<string[]> = new Observable<string[]>;
   filteredApproverOptions: Observable<string[]> = new Observable<string[]>;
 
   panelOpenState: boolean = false;
@@ -50,12 +49,6 @@ export class NewDocumentDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.filteredCopyOptions = this.copyControl.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        return value ? this._filter(value) : this.validApprovers.slice();
-      }),
-    );
     this.filteredApproverOptions = this.approverControl.valueChanges.pipe(
       startWith(''),
       map(value => {
@@ -64,7 +57,6 @@ export class NewDocumentDialogComponent implements OnInit {
     );
   }
 
-  displayCopy = (approver: string): string => approver ?? '';
   displayApprover = (approver: string): string => approver ?? '';
   private _filter = (name: string): string[] => this.validApprovers.filter(approver => approver.toLowerCase().includes(name.toLowerCase()));
 

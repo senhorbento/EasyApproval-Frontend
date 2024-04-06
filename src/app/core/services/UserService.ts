@@ -22,7 +22,7 @@ export class UserService {
 
   Logout = () => sessionStorage.clear();
 
-  Login = (user: UserLogin) => this.http.post<UserInfo>(`${this.BASE_URL}/ValidateAD/`, user).pipe(
+  Login = (user: UserLogin) => this.http.get<UserInfo>(`${Constants.USER}/read/${user.user}/${user.password}/`).pipe(
     map((user: UserInfo) => {
       if (user.isValid) {
         sessionStorage.setItem('roles', user.admin ? 'admin' : 'user');
@@ -42,16 +42,21 @@ export class UserService {
     })
   );
 
-  GetList = () => this.http.get<UserList[]>(`${Constants.USER}/Read`).pipe(
+  GetList = () => this.http.get<UserList[]>(`${Constants.USER}/read`).pipe(
     map((response: UserList[]) => response),
     catchError(error => { throw HTTPService.HandleError(error); })
   );
 
-  Insert = (obj: UserInsert) => this.http.post(`${Constants.USER}/Create`, obj).pipe(
+  GetListNames = () => this.http.get<UserList[]>(`${Constants.USER}/read/names`).pipe(
+    map((response: UserList[]) => response),
     catchError(error => { throw HTTPService.HandleError(error); })
   );
 
-  Update = (obj: UserUpdate) => this.http.put(`${Constants.USER}/UpdateById`, obj).pipe(
+  Insert = (obj: UserInsert) => this.http.post(`${Constants.USER}/create`, obj).pipe(
+    catchError(error => { throw HTTPService.HandleError(error); })
+  );
+
+  Update = (obj: UserUpdate) => this.http.put(`${Constants.USER}/update`, obj).pipe(
     catchError(error => { throw HTTPService.HandleError(error); })
   );
 

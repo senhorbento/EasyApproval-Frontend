@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.getCurrentUser();
+    this.acessLevel = this.userService.getCurrentAcessLevel();
   }
 
   Logout() {
@@ -22,7 +23,6 @@ export class HeaderComponent implements OnInit {
   }
 
   CheckAdmin = (): boolean => {
-    return true;
     const roles = this.acessLevel!.toLowerCase();
     return roles.includes('admin');
   }

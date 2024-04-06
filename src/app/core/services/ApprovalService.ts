@@ -12,11 +12,11 @@ import { HTTPService } from './HTTPService';
 export class ApprovalService {
   constructor(private http: HttpClient) { }
 
-  Approve = (obj: ApprovalUpdate) => this.http.put(`${Constants.APPROVAL}/UpdateById`, obj).pipe(
+  Approve = (obj: ApprovalUpdate) => this.http.put(`${Constants.APPROVAL}/updateById`, obj).pipe(
     catchError(error => { throw HTTPService.HandleError(error); })
   );
 
-  GetListById = (id: string) => this.http.get<Approval[]>(`${Constants.APPROVAL}/Read/${id}`).pipe(
+  GetListById = (id: string) => this.http.get<Approval[]>(`${Constants.APPROVAL}/read/${id}`).pipe(
     map((response: Approval[]) => response),
     catchError(error => { throw HTTPService.HandleError(error); })
   );

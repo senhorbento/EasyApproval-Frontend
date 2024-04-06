@@ -14,9 +14,10 @@ import { UserService } from 'src/app/core/services/UserService';
   styleUrls: ['./new-document-dialog.component.scss']
 })
 export class NewDocumentDialogComponent implements OnInit {
-  private approverData = new BehaviorSubject<string[]>([]);
   private validApprovers: string[] = [];
+  private approverData = new BehaviorSubject<string[]>([]);
   listApprover = this.approverData.asObservable();
+
 
   copyControl = new FormControl<string>('');
   approverControl = new FormControl<string>('');
@@ -49,6 +50,19 @@ export class NewDocumentDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.spinner.show();
+    this.userService.GetListNames().subscribe({
+      next: (data) => {
+        this.validApprovers = data;
+      },
+      error: error => {
+        this.spinner.hide();
+        this.snackBar.open(error.statusText, true);
+      },
+      complete: () => {
+        this.spinner.hide();
+      }
+    });
     this.filteredApproverOptions = this.approverControl.valueChanges.pipe(
       startWith(''),
       map(value => {
@@ -62,8 +76,10 @@ export class NewDocumentDialogComponent implements OnInit {
 
   Close = () => this.dialogRef.close();
 
-  RemoveApprover = (approver: string) => this.approverData.next(this.approverData.value.filter(item => item !== approver));
-
+  RemoveApprover = (approver: string) => {
+    this.approverData.next(this.approverData.value.filter(item => item !== approver));
+    this.item.approverName = [...this.approverData.value];
+  }
   AddApprover = () => {
     if (!this.approver)
       return;
@@ -74,9 +90,9 @@ export class NewDocumentDialogComponent implements OnInit {
         return this.snackBar.open("Approver already inserted", true);
       if (this.validApprovers.find(approver => element == approver.toLowerCase()) == undefined)
         return this.snackBar.open("Approver not valid", true);
-      this.item.approvals.approverId = [...this.approverData.value, element];
+      this.item.approverName = [...this.approverData.value, element];
       this.approverControl.setValue(null);
-      this.approverData.next(this.item.approvals.approverId);
+      this.approverData.next(this.item.approverName);
     });
     this.approver = "";
   }
@@ -122,7 +138,7 @@ export class NewDocumentDialogComponent implements OnInit {
   Insert() {
     this.spinner.show();
     if (this.CheckFields()) {
-      this.item.status = "Pending: " + this.item.approvals.approverId.length;
+      this.item.status = "Pending: " + this.item.approverName.length;
       this.documentService.Insert(this.item).subscribe({
         next: () => this.snackBar.open("Successfully Inserted", false),
         error: error => {

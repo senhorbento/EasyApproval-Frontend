@@ -104,7 +104,7 @@ export class MainTableComponent implements OnInit {
       },
       error: error => {
         this.spinner.hide();
-        this.snackBar.open(error.statusText, true);
+        this.snackBar.open(error.message, true);
       },
       complete: () => this.spinner.hide()
     });

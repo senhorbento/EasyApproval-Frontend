@@ -1,7 +1,3 @@
-export class ApprovalInsert {
-  approverId: string[] = [];
-}
-
 export class ApprovalUpdate {
   documentId: number = -1;
   approverId: number = -1;

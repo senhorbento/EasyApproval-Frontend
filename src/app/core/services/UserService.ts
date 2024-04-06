@@ -10,7 +10,6 @@ import { HTTPService } from './HTTPService';
 })
 
 export class UserService {
-  private BASE_URL: string = Constants.USER;
   private currentUserSource = new BehaviorSubject<UserInfo | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
 
@@ -47,8 +46,8 @@ export class UserService {
     catchError(error => { throw HTTPService.HandleError(error); })
   );
 
-  GetListNames = () => this.http.get<UserList[]>(`${Constants.USER}/read/names`).pipe(
-    map((response: UserList[]) => response),
+  GetListNames = () => this.http.get<string[]>(`${Constants.USER}/read/names`).pipe(
+    map((response: string[]) => response),
     catchError(error => { throw HTTPService.HandleError(error); })
   );
 

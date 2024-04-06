@@ -1,8 +1,6 @@
-import { ApprovalInsert } from "./Approval";
-
 export class DocumentList {
   id: number = -1;
-  requesterId: number = -1;
+  requesterName: string = "";
   name: string = "";
   status: string = "";
   requestDate: string = "";
@@ -13,5 +11,5 @@ export class DocumentInsert {
   requesterId: number = -1;
   status: string = "";
   pdfOriginal: string = "";
-  approvals: ApprovalInsert = new ApprovalInsert();
+  approverName: string[] = [];
 }

@@ -17,7 +17,7 @@ import { PdfService } from 'src/app/core/services/PdfService';
   styleUrls: ['./signer-table.component.css']
 })
 export class SignerTableComponent {
-  displayedColumns: string[] = ['documentNumber','documentName', 'requesterName', 'documentStatus', 'requestDate', 'document', 'validate'];
+  displayedColumns: string[] = ['documentName', 'requesterName', 'documentStatus', 'requestDate', 'document', 'validate'];
   itemList: MatTableDataSource<DocumentList> = new MatTableDataSource<DocumentList>;
   documentList: MatTableDataSource<DocumentList> = new MatTableDataSource<DocumentList>;
   pageSizes: number[] = [25, 50, 100];
@@ -26,7 +26,7 @@ export class SignerTableComponent {
   listStatus: string[] = ['All', 'Pending', 'Approved', 'Disapproved'];
   filter: string = "All";
 
-  userId: number = -1;
+  userName: string = "";
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(
@@ -38,8 +38,8 @@ export class SignerTableComponent {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.userId = this.userService.getCurrentUserId()!;
-    if (this.userId != -1)
+    this.userName = this.userService.getCurrentUser()!;
+    if (this.userName != "")
       this.Refresh();
   }
 
@@ -61,7 +61,7 @@ export class SignerTableComponent {
 
   Refresh() {
     this.spinner.show();
-    this.documentService.GetListById(this.userId).subscribe({
+    this.documentService.GetListByName(this.userName).subscribe({
       next: data => {
         this.itemList = new MatTableDataSource(data);
         this.itemList.paginator = this.paginator;
@@ -75,8 +75,8 @@ export class SignerTableComponent {
             return true;
           }
           if (filter === "Pending")
-            return data.documentStatus.toLowerCase().includes(filter.toLowerCase());
-          return data.documentStatus.toLowerCase() === filter.toLowerCase();
+            return data.status.toLowerCase().includes(filter.toLowerCase());
+          return data.status.toLowerCase() === filter.toLowerCase();
         };
         this.spinner.hide();
       },

@@ -18,13 +18,9 @@
   </mat-form-field>
 </form>
 <table mat-table [dataSource]="itemList" matSort>
-  <ng-container matColumnDef="documentNumber">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Document Number</th>
-    <td mat-cell *matCellDef="let element">{{element.documentNumber}}</td>
-  </ng-container>
   <ng-container matColumnDef="documentName">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Document Name</th>
-    <td mat-cell *matCellDef="let element">{{element.documentName}}</td>
+    <td mat-cell *matCellDef="let element">{{element.name}}</td>
   </ng-container>
   <ng-container matColumnDef="requesterName">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Requester</th>
@@ -32,7 +28,7 @@
   </ng-container>
   <ng-container matColumnDef="documentStatus">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-    <td mat-cell *matCellDef="let element" [ngClass]="GetDocumentStatusClass(element.documentStatus)"><b>{{element.documentStatus}}</b></td>
+    <td mat-cell *matCellDef="let element" [ngClass]="GetDocumentStatusClass(element.status)"><b>{{element.status}}</b></td>
   </ng-container>
   <ng-container matColumnDef="requestDate">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Requested Date</th>
@@ -40,11 +36,11 @@
   </ng-container>
   <ng-container matColumnDef="document">
     <th mat-header-cell *matHeaderCellDef  style="text-align: center;">View</th>
-    <td mat-cell *matCellDef="let element" style="text-align: center;"><mat-icon (click)="View(element.guid)">visibility</mat-icon></td>
+    <td mat-cell *matCellDef="let element" style="text-align: center;"><mat-icon (click)="View(element.id)">visibility</mat-icon></td>
   </ng-container>
   <ng-container matColumnDef="validate">
     <th mat-header-cell *matHeaderCellDef>Approval</th>
-    <td mat-cell *matCellDef="let element"><mat-icon *ngIf="IsPending(element.documentStatus)" (click)="Validate(element.guid)">add_task</mat-icon></td>
+    <td mat-cell *matCellDef="let element"><mat-icon *ngIf="IsPending(element.status)" (click)="Validate(element.id)">add_task</mat-icon></td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

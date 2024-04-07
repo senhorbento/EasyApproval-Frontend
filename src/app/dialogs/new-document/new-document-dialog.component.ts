@@ -138,7 +138,7 @@ export class NewDocumentDialogComponent implements OnInit {
   Insert() {
     this.spinner.show();
     if (this.CheckFields()) {
-      this.item.status = "Pending: " + this.item.approverName.length;
+      this.item.status = "Pending";
       this.documentService.Insert(this.item).subscribe({
         next: () => this.snackBar.open("Successfully Inserted", false),
         error: error => {

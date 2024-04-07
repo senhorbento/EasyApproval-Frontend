@@ -28,13 +28,6 @@ export class UserService {
         sessionStorage.setItem('id', user.id.toString());
         sessionStorage.setItem('name', user.name);
       }
-      else {
-        throw {
-          message: user.id ?
-            "Password Is Incorrect" :
-            "User Not Found"
-        };
-      }
     }),
     catchError(error => {
       throw HTTPService.HandleError(error);

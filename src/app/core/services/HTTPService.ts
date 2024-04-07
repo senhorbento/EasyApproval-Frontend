@@ -10,5 +10,5 @@ export class HTTPService implements HttpInterceptor {
     return next.handle(req);
   }
 
-  static HandleError = (error: any) => error.status === 0 ? "Server Connection Error" : error.message ?? error.error.message;
+  static HandleError = (error: any) => error.status === 0 ? "Server Connection Error" : error.error.message ?? error.message;
 }

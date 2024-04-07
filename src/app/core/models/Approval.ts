@@ -1,6 +1,6 @@
 export class ApprovalUpdate {
   documentId: number = -1;
-  approverId: number = -1;
+  approverName: string = "";
   approved: boolean = false;
 }
 

@@ -140,11 +140,7 @@ export class MainTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => this.Refresh());
   }
 
-  CheckStatus(status: string, guid: string) {
-    const _status = status.toLowerCase();
-    if (_status.includes("pending") || _status == "disapproved")
-      this.OpenPendingDialog(guid);
-  }
+  CheckStatus = (id: string) => this.OpenPendingDialog(id);
 
   OpenPendingDialog(guid: string) {
     const dialogRef = this.dialog.open(PendingsComponent, {

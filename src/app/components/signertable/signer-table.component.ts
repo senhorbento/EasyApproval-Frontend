@@ -94,7 +94,7 @@ export class SignerTableComponent {
     this.spinner.show();
     this.documentService.GetPdf(id).subscribe({
       next: (data) => {
-        this.pdfService.OpenPdf(data.pdfFile);
+        this.pdfService.OpenPdf(data);
         this.spinner.hide();
       },
       error: error => {

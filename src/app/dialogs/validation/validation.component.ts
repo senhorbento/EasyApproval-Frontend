@@ -23,6 +23,7 @@ export class ValidationComponent {
     private spinner: SpinnerService,
     private snackBar: SnackBar) {
     this.obj.approved = true;
+    this.obj.approverName = this.userService.getCurrentUser()??"";
     this.obj.documentId = data.guid;
   }
 
